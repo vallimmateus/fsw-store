@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Categories from "./components/categories";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         sizes="100vw"
         alt="Até 55% de desconto só esse mês"
       />
+      <Categories className="mt-[30px]" />
     </div>
   );
 }
