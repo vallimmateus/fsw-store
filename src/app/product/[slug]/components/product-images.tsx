@@ -6,9 +6,10 @@ import { useState } from "react";
 
 type ProductImagesProps = {
   imageUrls: string[];
+  name: string;
 };
 
-const ProductImages = ({ imageUrls }: ProductImagesProps) => {
+const ProductImages = ({ imageUrls, name }: ProductImagesProps) => {
   const [currentImage, setCurrentImage] = useState(imageUrls[0]);
 
   const handleImageClick = (imageUrl: string) => {
@@ -20,7 +21,7 @@ const ProductImages = ({ imageUrls }: ProductImagesProps) => {
       <div className="flex h-[380px] w-full items-center justify-center bg-accent">
         <Image
           src={currentImage}
-          alt=""
+          alt={name}
           height={0}
           width={0}
           sizes="100vw"
@@ -42,7 +43,7 @@ const ProductImages = ({ imageUrls }: ProductImagesProps) => {
           >
             <Image
               src={imageUrl}
-              alt=""
+              alt={name}
               height={0}
               width={0}
               sizes="100vw"
