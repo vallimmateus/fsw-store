@@ -10,7 +10,7 @@ type ProductItemProps = {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className="flex w-[156px] flex-col gap-[15px]">
+    <div className="flex min-w-[156px] flex-col gap-[15px]">
       <div className="relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
         <Image
           src={product.imageUrls[0]}
