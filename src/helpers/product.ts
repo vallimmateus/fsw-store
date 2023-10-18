@@ -4,7 +4,7 @@ type ProductWithTotalPrice = Product & {
   totalPrice: number;
 };
 
-const computeProductTotalPrice = (product: Product) => {
+const computeProductTotalPrice = (product: Product): ProductWithTotalPrice => {
   let totalPrice;
   if (product.discountPercentage === 0) {
     totalPrice = Number(product.basePrice);
