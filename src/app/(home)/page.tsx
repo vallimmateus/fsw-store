@@ -1,5 +1,5 @@
 import Categories from "./components/categories";
-import ProductHorizontalList from "./components/product-horizontal-list";
+import ProductHorizontalList from "@/components/ui/product-horizontal-list";
 import { prismaClient } from "@/lib/prisma";
 import PromoBanner from "./components/promo-banner";
 

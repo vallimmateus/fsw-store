@@ -2,7 +2,7 @@ import ProductItem from "@/components/ui/product-item";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { cn } from "@/lib/utils";
 import { Product } from "@prisma/client";
-import SectionTitle from "./section-title";
+import SectionTitle from "../../app/(home)/components/section-title";
 import { title } from "process";
 
 type ProductHorizontalListProps = {
