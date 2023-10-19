@@ -25,7 +25,6 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   };
 
   const handleAddToCartClick = () => {
-    console.log({ ...product, quantity });
     addProductToCart({ ...product, quantity });
   };
   return (
