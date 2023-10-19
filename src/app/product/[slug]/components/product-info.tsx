@@ -1,23 +1,20 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice } from "@/helpers/product";
+import { CartContext } from "@/providers/cart";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 type ProductInfoProps = {
-  product: Pick<
-    ProductWithTotalPrice,
-    "totalPrice" | "basePrice" | "description" | "discountPercentage" | "name"
-  >;
+  product: ProductWithTotalPrice;
 };
 
-const ProductInfo = ({
-  product: { basePrice, description, discountPercentage, totalPrice, name },
-}: ProductInfoProps) => {
+const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+
+  const { addProductToCart } = useContext(CartContext);
 
   const handleDecreaseQuantityClick = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
@@ -26,21 +23,26 @@ const ProductInfo = ({
   const handleIncreaseQuantityClick = () => {
     setQuantity((prev) => prev + 1);
   };
+
+  const handleAddToCartClick = () => {
+    console.log({ ...product, quantity });
+    addProductToCart({ ...product, quantity });
+  };
   return (
     <div className="flex flex-col px-5">
-      <h2 className="text-lg">{name}</h2>
+      <h2 className="text-lg">{product.name}</h2>
       <div className="flex items-center gap-1">
-        <h1>R$ {totalPrice.toFixed(2)}</h1>
-        {discountPercentage > 0 && (
+        <h1>R$ {product.totalPrice.toFixed(2)}</h1>
+        {product.discountPercentage > 0 && (
           <DiscountBadge className="px-2 py-0.5">
-            {discountPercentage}
+            {product.discountPercentage}
           </DiscountBadge>
         )}
       </div>
 
-      {discountPercentage > 0 && (
+      {product.discountPercentage > 0 && (
         <p className="text-sm text-zinc-600 line-through">
-          R$ {Number(basePrice).toFixed(2)}
+          R$ {Number(product.basePrice).toFixed(2)}
         </p>
       )}
 
@@ -64,10 +66,15 @@ const ProductInfo = ({
 
       <div className="mt-8 flex flex-col gap-3">
         <h3 className="font-bold">Descrição</h3>
-        <p className="text-justify text-sm text-zinc-300">{description}</p>
+        <p className="text-justify text-sm text-zinc-300">
+          {product.description}
+        </p>
       </div>
 
-      <Button className="mt-8 font-bold uppercase">
+      <Button
+        className="mt-8 font-bold uppercase"
+        onClick={handleAddToCartClick}
+      >
         Adicionar ao carrinho
       </Button>
 
